@@ -1,0 +1,99 @@
+/* Home Page New Layout */
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin: 3rem 0 1.5rem 0;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--primary-color), transparent);
+    margin-left: 15px;
+}
+
+.book-of-day-container {
+    margin-bottom: 3rem;
+}
+
+.book-card-large {
+    display: flex;
+    background-color: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    position: relative;
+    /* Min height for presence */
+    min-height: 400px;
+}
+
+.book-card-large .book-perspective {
+    flex-shrink: 0;
+    width: 300px;
+    height: 450px;
+    margin: 40px;
+}
+
+.book-card-large-content {
+    flex: 1;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(to right, rgba(30, 41, 59, 1), rgba(15, 23, 42, 0.5));
+}
+
+.book-card-large h3 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.book-card-large .book-info {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.book-card-large .btn {
+    align-self: flex-start;
+    margin-top: 2rem;
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .book-card-large {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .book-card-large .book-perspective {
+        margin: 2rem auto;
+        width: 180px;
+        height: 270px;
+    }
+
+    .book-card-large-content {
+        padding: 2rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .book-card-large h3 {
+        font-size: 1.75rem;
+    }
+
+    .book-card-large .btn {
+        align-self: center;
+    }
+}

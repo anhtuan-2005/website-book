@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tất Cả Sách - Sách Đẳng Cấp</title>
+    <link rel="stylesheet" href="/css/style.css?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .main-layout {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            align-items: flex-start;
+        }
+
+        /* Override default container to be full width for this page */
+        .container.main-layout {
+            max-width: 100%;
+            width: 95%;
+            /* Small buffer */
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--bg-surface);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 90px;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sidebar-title {
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 1.1rem;
+        }
+
+        .category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .category-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            transition: all 0.2s;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .category-item:hover,
+        .category-item.active {
+            background-color: var(--primary-color);
+            color: white;
+            padding-left: 1.25rem;
+        }
+
+        .content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Fix search bar overlap caused by global negative margin */
+        .content .search-bar {
+            margin: 1rem 0 2rem 0;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .main-layout {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="brand">Sách Đẳng Cấp</a>
+            <div class="nav-links" id="nav-links">
+                <!-- Links will be injected by JS based on auth state -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container" style="padding: 0;">
+        </div>
+    </div>
+
+    <div class="container main-layout">
+        <aside class="sidebar">
+            <h3 class="sidebar-title">Danh mục</h3>
+            <div id="category-list" class="category-list">
+                <!-- Categories will be loaded here -->
+                <p style="color: var(--text-muted);">Đang tải...</p>
+            </div>
+        </aside>
+
+        <main class="content">
+            <h2 class="section-title" style="margin-top: 0;">Kho Sách</h2>
+
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Tìm kiếm sách...">
+                <button class="btn" onclick="searchBooks()">Tìm kiếm</button>
+            </div>
+
+            <div id="books-grid" class="book-grid">
+                <!-- Books will be loaded here -->
+                <p>Đang tải sách...</p>
+            </div>
+        </main>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Website Đánh Giá Sách.
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/toanbosach.js"></script>
+</body>
+
+</html>

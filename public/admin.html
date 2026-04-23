@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Sách Đẳng cấp</title>
+    <link rel="stylesheet" href="/css/style.css?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav class="navbar" style="border-bottom: 1px solid var(--border-color); background: var(--bg-surface);">
+        <div
+            style="padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box;">
+            <a href="/" class="brand" style="padding: 0;">Sách Đẳng Cấp (Admin)</a>
+            <div class="nav-links" id="nav-links">
+                <!-- Links -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-menu-item active" data-tab="manage" onclick="switchTab('manage')">
+                <span>📚</span> Quản lý sách
+            </div>
+            <div class="admin-menu-item" data-tab="categories" onclick="switchTab('categories')">
+                <span>🏷️</span> Quản lý danh mục
+            </div>
+            <div class="admin-menu-item" data-tab="users" onclick="switchTab('users')">
+                <span>👥</span> Quản lý người dùng
+            </div>
+            <div class="admin-menu-item" data-tab="reviews" onclick="switchTab('reviews')">
+                <span>💬</span> Quản lý đánh giá
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Reviews Section -->
+            <div id="section-reviews" class="admin-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h1>Quản lý đánh giá</h1>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Người dùng</th>
+                            <th>Sách</th>
+                            <th>Điểm</th>
+                            <th>Nội dung</th>
+                            <th>Ngày</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="review-table-body">
+                        <!-- Reviews will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Categories Section -->
+            <div id="section-categories" class="admin-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h1>Quản lý danh mục</h1>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="new-category-name" placeholder="Tên danh mục mới" style="padding: 8px;">
+                        <button class="btn" onclick="addCategory()">+ Thêm</button>
+                    </div>
+                </div>
+                <div id="category-alert" class="alert"></div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Tên danh mục</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="category-table-body">
+                        <!-- Categories loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Users Section -->
+            <div id="section-users" class="admin-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h1>Quản lý người dùng</h1>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Tên đăng nhập</th>
+                            <th>Vai trò</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-table-body">
+                        <!-- Rows injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- Manage Section -->
+            <div id="section-manage" class="admin-section active">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+
+                    <h1>Quản lý sách</h1>
+                    <button class="btn" onclick="switchTab('add')">+ Thêm sách mới</button>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <input type="text" id="admin-search" placeholder="Tìm kiếm theo tên hoặc năm...">
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Tiêu đề</th>
+                            <th>Tác giả</th>
+                            <th>Mã sách</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="book-table-body">
+                        <!-- Rows injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Add/Edit Section -->
+            <div id="section-add" class="admin-section">
+                <h1>Thông tin sách</h1>
+                <div class="review-section" style="margin-top: 1rem;">
+                    <h3 id="form-title">Thêm sách mới</h3>
+                    <div id="admin-alert" class="alert"></div>
+                    <form id="add-book-form" novalidate>
+                        <div class="form-group">
+                            <label>Tiêu đề</label>
+                            <input type="text" id="title" required>
+                            <small class="error-msg" id="error-title"></small>
+                        </div>
+                        <div class="form-group">
+                            <label>Tác giả</label>
+                            <input type="text" id="author" required>
+                            <small class="error-msg" id="error-author"></small>
+                        </div>
+                        <div class="form-group">
+                            <label>Năm <small>(Để trống nếu không xác định)</small></label>
+                            <input type="text" id="year" placeholder="VD: 2024 hoặc để trống">
+                        </div>
+                        <div class="form-group">
+                            <label>Danh mục</label>
+                            <select id="category_id">
+                                <option value="">-- Chọn danh mục --</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="isbn-group">
+                            <label>Mã sách (ISBN) <small>(Bỏ trống để tự sinh)</small></label>
+                            <input type="text" id="isbn" placeholder="Tự động sinh nếu để trống">
+                        </div>
+                        <div class="form-group">
+                            <label>Link ảnh bìa</label>
+                            <input type="text" id="image" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="form-group">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                                <label>Quản lý chương (Dùng để Sửa/Xóa)</label>
+                                <button type="button" class="action-btn" onclick="toggleChapters()"
+                                    style="background-color: #17a2b8; color: white;">👁️ Ẩn/Hiện</button>
+                            </div>
+                            <div id="chapters-wrapper" style="display: block;">
+                                <div id="chapters-container">
+                                    <!-- Chapter items will be added here -->
+                                </div>
+                                <button type="button" class="btn" style="background-color: #28a745; margin-top: 10px;"
+                                    onclick="addChapterField()">+ Thêm dòng chương</button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">Thêm sách</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/admin.js"></script>
+    <script>
+        window.switchTab = function (tabId) {
+            // Update Sidebar
+            document.querySelectorAll('.admin-menu-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.tab === tabId) item.classList.add('active');
+            });
+
+            // Update Sections
+            document.querySelectorAll('.admin-section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            document.getElementById('section-' + tabId).classList.add('active');
+
+            // If switching to Add Manualy (not edit), we might want to reset form if it was in edit mode, 
+            // but for now let's leave that to the reset button or explicit logic.
+            if (tabId === 'users') {
+                if (typeof loadUsers === 'function') loadUsers();
+            }
+            if (tabId === 'reviews') {
+                if (typeof loadReviews === 'function') loadReviews();
+            }
+            if (tabId === 'categories') {
+                if (typeof loadCategories === 'function') loadCategories();
+            }
+        }
+    </script>
+</body>
+
+</html>

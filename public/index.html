@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Review</title>
+    <link rel="stylesheet" href="/css/style.css?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .full-width-container {
+            max-width: 100% !important;
+            width: 95%;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="brand">Sách Đẳng Cấp</a>
+            <div class="nav-links" id="nav-links">
+                <!-- Links will be injected by JS based on auth state -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container" style="padding: 0;">
+        </div>
+    </div>
+
+    <div class="container full-width-container">
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Tìm kiếm theo Mã sách, Tiêu đề, Tác giả, hoặc Năm...">
+            <button class="btn" onclick="searchBooks()">Tìm kiếm</button>
+        </div>
+
+        <!-- Search Results Container (Hidden by default) -->
+        <div id="search-results-container" style="display: none;">
+            <h2 class="section-title">Kết quả tìm kiếm</h2>
+            <div id="search-results-list" class="book-grid"></div>
+        </div>
+
+        <!-- Home Page Sections -->
+        <div id="home-sections">
+            <h2 class="section-title">📘 SÁCH HÔM NAY</h2>
+            <div id="book-of-day" class="book-grid">
+                <!-- Loaded by JS -->
+            </div>
+
+            <h2 class="section-title">🔥 SÁCH NỔI BẬT</h2>
+            <div id="featured-books" class="book-grid">
+                <!-- Loaded by JS -->
+            </div>
+
+            <h2 class="section-title">🆕 SÁCH MỚI NHẤT</h2>
+            <div id="newest-books" class="book-grid">
+                <!-- Loaded by JS -->
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Website Đánh Giá Sách.
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/home.js"></script>
+</body>
+
+</html>
