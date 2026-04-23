@@ -1,0 +1,27 @@
+# Dependencies
+# Bỏ qua thư mục chứa các thư viện đã cài đặt.
+# Thư mục này sẽ được tạo lại khi chạy `npm install`.
+/node_modules
+
+# Environment Variables
+# Bỏ qua file chứa các biến môi trường, bao gồm cả thông tin nhạy cảm
+# như mật khẩu database.
+.env
+
+# Logs
+# Bỏ qua các file log được tạo ra trong quá trình phát triển hoặc chạy ứng dụng.
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+# Bỏ qua các thư mục chứa mã nguồn đã được build (nếu có).
+/dist
+/build
+
+# OS generated files
+# Bỏ qua các file hệ thống tự sinh của macOS và Windows.
+.DS_Store
+Thumbs.db
