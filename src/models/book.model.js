@@ -14,7 +14,7 @@ export default class Book {
             query += ' WHERE b.category_id = ?';
             params.push(categoryId);
         }
-        query += ' GROUP BY b.id';
+        query += ' GROUP BY b.id, c.name';
         query += ' ORDER BY b.created_at DESC';
         const [rows] = await db.execute(query, params);
         return rows;
@@ -27,7 +27,7 @@ export default class Book {
             FROM books b 
             LEFT JOIN categories c ON b.category_id = c.id
             LEFT JOIN reviews r ON b.id = r.book_id
-            GROUP BY b.id
+            GROUP BY b.id, c.name
             ORDER BY average_score DESC, b.created_at DESC
             LIMIT ?
         `;
@@ -45,7 +45,7 @@ export default class Book {
             LEFT JOIN categories c ON b.category_id = c.id
             LEFT JOIN reviews r ON b.id = r.book_id
             WHERE b.isbn = ?
-            GROUP BY b.id
+            GROUP BY b.id, c.name
         `;
         const [rows] = await db.execute(query, [isbn]);
         const book = rows[0];
